@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <head>
+        <title>MovieBookWormClient</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        
+        <img src="./images/logo.png"/>
+            
+            <h:form id="searchMovieForm" style="margin-top: 50px; width: 600px">
+                <p:panel style="overflow: auto; alignment-adjust: middle; background-color: darkorchid" header="SEARCH FOR A FILM">
+                    <h:panelGrid columns="3" id="searchEventGrid">
+                        <h:outputLabel for="title" style="color: magenta"></h:outputLabel>
+                        <p:inputText id="title" value="#{searchBean.title}" required="true" requiredMessage="Mandatory"  />
+                        <p:message id="titlemsg" for="title" />
+                    </h:panelGrid>
+                    <p:commandButton style="margin-top: 10px" id="submit" value="Submit" update="title, titlemsg" action="#{searchBean.search()}" />
+                </p:panel>
+                <p:blockUI block="searchMovieForm" trigger="submit">
+                    LOADING<br />
+                    <p:graphicImage value="http://www.iranyellowpages.ir/images/UpdateGif/gear.gif"/>
+                </p:blockUI>
+            </h:form>
+        
+    </body>
+</html>
