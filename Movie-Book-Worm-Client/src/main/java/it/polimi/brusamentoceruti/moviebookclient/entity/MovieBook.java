@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.polimi.brusamentoceruti.moviebookrest.entity;
+package it.polimi.brusamentoceruti.moviebookclient.entity;
 
 import java.io.Serializable;
 import java.util.List;

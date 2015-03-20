@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.polimi.brusamentoceruti.moviebookrest.boundary;
+package it.polimi.brusamentoceruti.moviebookclient.boundary;
 
 import java.io.IOException;
 import java.io.InputStream;

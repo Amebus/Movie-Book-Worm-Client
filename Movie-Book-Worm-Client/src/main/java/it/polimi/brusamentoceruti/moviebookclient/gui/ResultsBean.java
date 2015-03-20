@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.polimi.brusamentoceruti.moviebookrest.gui;
+package it.polimi.brusamentoceruti.moviebookclient.gui;
 
 import javax.ejb.Stateless;
 
