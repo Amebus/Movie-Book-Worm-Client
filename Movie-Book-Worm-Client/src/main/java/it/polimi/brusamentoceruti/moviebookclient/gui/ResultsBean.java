@@ -14,6 +14,12 @@ import javax.ejb.Stateless;
 @Stateless
 public class ResultsBean {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    private static final String localhost = "http://localhost:8080/";
+    private static final String baseURL = "MovieBookREST/webresources/movie?q=";
+    
+    private static final String otherHost = "/";
+    
+    public ResultsBean (){
+        
+    }
 }

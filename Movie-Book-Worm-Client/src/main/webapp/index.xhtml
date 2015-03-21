@@ -14,7 +14,9 @@ and open the template in the editor.
     </head>
     <body>
         
-        <img src="./images/logo.png"/>
+            
+        <center style="margin-top: 50px">
+            <img src="./images/logo.png"/>
             
             <h:form id="searchMovieForm" style="margin-top: 50px; width: 600px">
                 <p:panel style="overflow: auto; alignment-adjust: middle; background-color: darkorchid" header="SEARCH FOR A FILM">
@@ -22,6 +24,10 @@ and open the template in the editor.
                         <h:outputLabel for="title" style="color: magenta"></h:outputLabel>
                         <p:inputText id="title" value="#{searchBean.title}" required="true" requiredMessage="Mandatory"  />
                         <p:message id="titlemsg" for="title" />
+
+                        <h:outputLabel for="limit" style="color: white"> MAX: </h:outputLabel>
+                        <p:inputText id="limit" value="#{searchBean.limit}"/>
+                        <p:message id="limitmsg" for="title" />
                     </h:panelGrid>
                     <p:commandButton style="margin-top: 10px" id="submit" value="Submit" update="title, titlemsg" action="#{searchBean.search()}" />
                 </p:panel>
@@ -30,6 +36,7 @@ and open the template in the editor.
                     <p:graphicImage value="http://www.iranyellowpages.ir/images/UpdateGif/gear.gif"/>
                 </p:blockUI>
             </h:form>
+        </center>
         
     </body>
 </html>

@@ -25,8 +25,13 @@ public class SearchBean implements Serializable{
     
     private String title;
     
-    private static final String baseURL = "http://localhost:8080/MovieBookREST/webresources/movie?q=";
-
+    private int limit = 3;
+    
+    private static final String localhost = "http://localhost:8080/";
+    private static final String baseURL = "MovieBookREST/webresources/movie?q=";
+    
+    private static final String otherHost = "/";
+    
     public SearchBean() {
     }
 
@@ -38,9 +43,19 @@ public class SearchBean implements Serializable{
         this.title = title;
     }
     
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+    
     public void search(){
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect(baseURL+this.title);
+            String queryURL = (this.limit <= 0) ? (localhost+baseURL+this.title) :
+                    localhost+baseURL+this.title + "&limit=" + this.limit;
+            FacesContext.getCurrentInstance().getExternalContext().redirect(queryURL);
         } catch (IOException ex) {
             Logger.getLogger(SearchBean.class.getName()).log(Level.SEVERE, null, ex);
         }
