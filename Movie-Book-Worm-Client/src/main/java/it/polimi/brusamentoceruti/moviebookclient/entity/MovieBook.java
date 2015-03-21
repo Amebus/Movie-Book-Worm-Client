@@ -7,16 +7,11 @@ package it.polimi.brusamentoceruti.moviebookclient.entity;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Mattia
+ * @author Federico
  */
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 public class MovieBook implements Serializable{
     
     private String title;

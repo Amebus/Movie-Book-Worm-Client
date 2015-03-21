@@ -25,6 +25,15 @@ import org.json.JSONObject;
  */
 public class JsonRequest {
     
+    public static final String BOOKS = "books";
+    public static final String MOVIES = "movies";
+    public static final String TITLE = "title";
+    public static final String YEAR = "year";
+    public static final String DIRECTORS = "directors";
+    public static final String ADUDIENCE_RATING = "audience_rating";
+    public static final String CRITICS_RATING = "critics_rating";
+    public static final String POSTER = "poster";
+    
     public static JSONObject doQuery (String Url) throws JSONException, IOException {
         String responseBody = null;
         HttpGet httpget;

@@ -12,5 +12,9 @@ and open the template in the editor.
         <title>Results</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    
+    <h:body>
+        <h:form>
+            #{resultsBean.results.books.toArray()}
+        </h:form>
+    </h:body>    
 </html>
