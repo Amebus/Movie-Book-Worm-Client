@@ -7,14 +7,42 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui" 
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Results</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
-        <h:form>
-            #{resultsBean.results.books.toArray()}
-        </h:form>
+        <h:form style="width:600px; margin-top: 50px; margin-left: auto; margin-right: auto">
+            <p:dataScroller value="#{resultsBean.movies}" var="movie" chunkSize="10" mode="inline" scrollHeight="600">
+            <f:facet name="header">
+                Scroll Down to Load More Movies
+            </f:facet>
+ 
+            <h:panelGrid columns="2" style="width:100%; border-bottom: black; border-bottom-width: 3px" columnClasses="logo,detail">
+                <img src="#{movie.poster}" />
+
+                <p:outputPanel>
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputText value="Title:" />
+                        <h:outputText value="#{movie.title}" style="font-weight: bold"/>
+
+                        <h:outputText value="Year:" />
+                        <h:outputText value="#{movie.year}" style="font-weight: bold"/>
+
+                        <h:outputText value="Directors:" />
+                        <h:outputText value="#{movie.directorsAsString}" style="font-weight: bold"/>
+                        
+                        <h:outputText value="Audience Rating" />
+                        <h:outputText value="#{movie.audience_rating}" style="font-weight: bold"/>
+                        
+                        <h:outputText value="Critics Rating" />
+                        <h:outputText value="#{movie.critics_rating}" style="font-weight: bold"/>
+                    </h:panelGrid>
+                </p:outputPanel>
+            </h:panelGrid>
+    </p:dataScroller>
+</h:form>
     </h:body>    
 </html>

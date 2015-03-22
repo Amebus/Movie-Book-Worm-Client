@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import org.json.JSONArray;
@@ -27,7 +27,7 @@ import org.json.JSONObject;
  *
  * @author federico
  */
-@SessionScoped
+@ViewScoped
 @ManagedBean
 public class ResultsBean implements Serializable{
 
@@ -40,6 +40,7 @@ public class ResultsBean implements Serializable{
     private String searchedLimit;
     private JSONObject jsonResult;
     private MoviesResult results;
+    private List<MovieBook> movies;
 
     public String getTitle() {
         return searchedTitle;
@@ -77,12 +78,20 @@ public class ResultsBean implements Serializable{
         results = new MoviesResult();
     }
 
+    public List<MovieBook> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<MovieBook> movies) {
+        this.movies = movies;
+    }
+    
     @PostConstruct
     private void init(){
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         String s = request.getParameter("q");
-        this.searchedTitle =  s;
+        this.searchedTitle =  s.replaceAll(" ", "%20");
         s= request.getParameter("limit");
         this.searchedLimit = s;
         s=createURL();
@@ -97,7 +106,7 @@ public class ResultsBean implements Serializable{
     private void obtainResults(String s) {
         
         JSONArray jsa;
-        List<String> l = new ArrayList();
+        List<String> list = new ArrayList();
         List<MovieBook> m = new ArrayList();
         try {
             
@@ -105,9 +114,9 @@ public class ResultsBean implements Serializable{
             jsa = jsonResult.getJSONArray(JsonRequest.BOOKS);
             
             for (int i = 0; i < jsa.length(); i++) {
-                l.add(jsa.getString(i));
+                list.add(jsa.getString(i));
             }
-            results.setBooks(l);
+            results.setBooks(list);
             
             jsa = jsonResult.getJSONArray(JsonRequest.MOVIES);
             
@@ -115,7 +124,7 @@ public class ResultsBean implements Serializable{
                 m.add(extractMovie(jsa.getJSONObject(i)));
             }
             
-            results.setMovies(m);
+            movies = m;
         } catch (JSONException ex) {
             Logger.getLogger(ResultsBean.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -125,7 +134,7 @@ public class ResultsBean implements Serializable{
 
     private MovieBook extractMovie(JSONObject jsonObject) throws JSONException {
         JSONArray jsa;
-        List<String> l = new ArrayList();
+        List<String> list = new ArrayList();
         MovieBook mb = new MovieBook(jsonObject.getString(JsonRequest.TITLE));
         
         mb.setAudience_rating(Integer.parseInt(jsonObject.getString(JsonRequest.ADUDIENCE_RATING)));
@@ -135,13 +144,13 @@ public class ResultsBean implements Serializable{
         {
             jsa = jsonObject.getJSONArray(JsonRequest.DIRECTORS);
             for (int i = 0; i < jsa.length(); i++) {
-                l.add(jsa.getString(i));
+                list.add(jsa.getString(i));
             }
         }
         catch (JSONException ex){
             
         }
-        mb.setDirectors(l);
+        mb.setDirectors(list);
         mb.setPoster(jsonObject.getString(JsonRequest.POSTER));
         mb.setYear(jsonObject.getString(JsonRequest.YEAR));
         

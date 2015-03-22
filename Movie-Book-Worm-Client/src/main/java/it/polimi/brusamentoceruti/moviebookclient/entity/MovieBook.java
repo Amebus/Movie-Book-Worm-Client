@@ -50,6 +50,16 @@ public class MovieBook implements Serializable{
         this.directors = directors;
     }
 
+    public String getDirectorsAsString(){
+        String dir = "";
+        
+        for(String s : this.directors){
+            dir+=(s+";");
+        }
+        
+        return dir;
+    }
+    
     public String getPoster() {
         return poster;
     }
