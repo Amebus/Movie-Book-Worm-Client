@@ -31,6 +31,7 @@ import org.json.JSONObject;
 @ManagedBean
 public class ResultsBean implements Serializable{
 
+    private static final String otherrhost = "";
     private static final String localhost = "http://localhost:8080/";
     private static final String baseURL = "MovieBookREST/webresources/movie?q=";
     
@@ -40,7 +41,6 @@ public class ResultsBean implements Serializable{
     private String searchedLimit;
     private JSONObject jsonResult;
     private MoviesResult results;
-    private List<MovieBook> movies;
 
     public String getTitle() {
         return searchedTitle;
@@ -77,14 +77,6 @@ public class ResultsBean implements Serializable{
     public ResultsBean (){
         results = new MoviesResult();
     }
-
-    public List<MovieBook> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(List<MovieBook> movies) {
-        this.movies = movies;
-    }
     
     @PostConstruct
     private void init(){
@@ -107,7 +99,6 @@ public class ResultsBean implements Serializable{
         
         JSONArray jsa;
         List<String> list = new ArrayList();
-        List<MovieBook> m = new ArrayList();
         try {
             
             jsonResult = JsonRequest.doQuery(s);
@@ -121,10 +112,9 @@ public class ResultsBean implements Serializable{
             jsa = jsonResult.getJSONArray(JsonRequest.MOVIES);
             
             for (int i = 0; i < jsa.length(); i++) {
-                m.add(extractMovie(jsa.getJSONObject(i)));
+                results.addMovie(extractMovie(jsa.getJSONObject(i)));
             }
             
-            movies = m;
         } catch (JSONException ex) {
             Logger.getLogger(ResultsBean.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
