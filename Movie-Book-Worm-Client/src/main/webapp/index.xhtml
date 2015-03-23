@@ -19,13 +19,13 @@ and open the template in the editor.
             <img src="./images/logo.png"/>
             
             <h:form id="searchMovieForm" style="margin-top: 50px; width: 600px">
-                <p:panel style="overflow: auto; alignment-adjust: middle; background-color: darkorchid" header="SEARCH FOR A FILM">
+                <p:panel style="overflow: auto; alignment-adjust: middle; background-color: greenyellow" header="SEARCH FOR A FILM">
                     <h:panelGrid columns="3" id="searchEventGrid">
-                        <h:outputLabel for="title" style="color: magenta"></h:outputLabel>
+                        <h:outputLabel for="title" style="color: black"></h:outputLabel>
                         <p:inputText id="title" value="#{searchBean.title}" required="true" requiredMessage="Mandatory"  />
                         <p:message id="titlemsg" for="title" />
 
-                        <h:outputLabel for="limit" style="color: white"> MAX: </h:outputLabel>
+                        <h:outputLabel for="limit" style="color: black"> MAX: </h:outputLabel>
                         <p:inputText id="limit" value="#{searchBean.limit}"/>
                         <p:message id="limitmsg" for="title" />
                     </h:panelGrid>
