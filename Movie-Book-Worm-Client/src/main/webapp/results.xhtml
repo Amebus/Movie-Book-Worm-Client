@@ -15,20 +15,7 @@ and open the template in the editor.
     </h:head>
     <h:body>
         
-        <h:form style="width:700px; margin-top: 50px; margin-left: auto; margin-right: auto">
-            <p:dataScroller value="#{resultsBean.results.books}" var="book" chunkSize="4" mode="inline" scrollHeight="130">
-                <f:facet name="header">
-                    Scroll Down to Load More Books
-                </f:facet>
-
-                <h:panelGrid columns="1" style="width:100%;" columnClasses="detail">
-                    <p:outputPanel>
-                        <a target="_blank" href="#{book}">#{book}</a>
-                    </p:outputPanel>
-                </h:panelGrid>
-            </p:dataScroller>
-        </h:form>
-        
+               
         <h:form style="width:700px; margin-top: 50px; margin-left: auto; margin-right: auto">
             <p:dataScroller value="#{resultsBean.results.movies}" var="movie" chunkSize="4" mode="inline" scrollHeight="600">
                 <f:facet name="header">
@@ -59,5 +46,20 @@ and open the template in the editor.
                 </h:panelGrid>
             </p:dataScroller>
         </h:form>
+        
+        <h:form style="width:700px; margin-top: 50px; margin-left: auto; margin-right: auto">
+            <p:dataScroller value="#{resultsBean.results.books}" var="book" chunkSize="4" mode="inline" scrollHeight="130">
+                <f:facet name="header">
+                    Scroll Down to Load More Books
+                </f:facet>
+
+                <h:panelGrid columns="1" style="width:100%;" columnClasses="detail">
+                    <p:outputPanel>
+                        <a target="_blank" href="#{book}">#{book}</a>
+                    </p:outputPanel>
+                </h:panelGrid>
+            </p:dataScroller>
+        </h:form>
+        
     </h:body>    
 </html>
